@@ -8,7 +8,7 @@ import time
 from mutagen.mp3 import MP3
 import wave
 import contextlib
-#import pkg_resources.py2_warn
+import pkg_resources.py2_warn
 
 
 playing = False
@@ -87,7 +87,7 @@ class Ui_Form(object):
         self.pushButton.setIcon(QtGui.QIcon('images/play.png'))
         self.pushButton.setIconSize(QtCore.QSize(75, 75))
         self.pushButton.clicked.connect(self.click_play)
-        self.pushButton_2.setIcon(QtGui.QIcon('images/play.png'))
+        self.pushButton_2.setIcon(QtGui.QIcon('images/stop.png'))
         self.pushButton_2.setIconSize(QtCore.QSize(75, 75))
         self.pushButton_2.clicked.connect(self.click_stop)
         self.horizontalSlider.setMinimum(0)
@@ -167,8 +167,8 @@ class PlayThread(Thread):
         i = BytesIO(r.content)
         pygame.mixer.init(audio_sample_rate)
         pygame.mixer.music.load(i)
-        player_init = True
         pygame.mixer.music.play()
+        player_init = True
 
         while True:
             if play_stopped:
@@ -232,7 +232,7 @@ class Volume_Rocker(Thread):
         while True:
             if pthread_flag:
                 break
-            while player_init:
+            while player_init and not play_stopped:
                 volume = self.GUI.horizontalSlider.value()
                 pygame.mixer.music.set_volume(float(volume)/100)
                 time.sleep(0.1)
