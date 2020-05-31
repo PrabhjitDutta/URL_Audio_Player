@@ -2,11 +2,13 @@
 
 GUI based audio player that plays audio from an URL.
 
-## SETUP
+## Installation
 
 Run the setup.bat file and the dependencies will automatically be installed.
 
-Then execute the Audio_Player.py or the windows binary executable Audio_Player.exe.
+Then execute the Audio_Player.py
+
+**NOTE:** You donot require to install any dependencies to execute the windows forzen binary executable file.
 
 ## Modules Used
 
